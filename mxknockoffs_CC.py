@@ -239,18 +239,6 @@ for i, seed in enumerate(seeds):
          # 'tp': args.tp, 'tp_freq': args.tp_freq, 'tp_alt_signs': args.tp_alt_sign
         } | evaluate(kn_rej, nonzero)
     )    # record data
-    
-#     if akn_factor != 1.0:
-#         # in this case, also run mxkn for alpha_kn
-#         kn_akn_rej = np.nonzero(
-#             kn_filter.make_selections(kn_filter.W, alpha_kn)    # reuse the Xk and resulting T and W, just change FDR level
-#         )[0]
-        
-#         for_concat.append(  
-#             {'seed': seed, 'amp':amp, 'procedure': f'mxkn*',
-#              'alpha_fdr': alpha_fdr, 'akn_factor': akn_factor,
-#             } | evaluate(kn_akn_rej, nonzero)
-#         )    # record data
         
     # e-values
     assert not isinstance(kn_filter.ksampler, type(None)), "make sure kn_filter has its sampler instantiated (by calling forward once)"
