@@ -25,6 +25,6 @@ startseed=$(( $whichseed * $n_seeds_per ))
 temp=$(( $startseed + $n_seeds_per )) 
 endseed=$(( ($temp < $n_exp ? $temp : $n_exp) - 1))   # make sure we do exactly n_exp experiments
 
-python -u ttesting_CC.py --name 'ttest-rho_neg-df_5' --start_seed $startseed --end_seed $endseed --m 100 --df 5 --tp 10 --tp_first --amp $amp --alpha_fdr 0.05 --rho -0.9 --true_sigma_sq 1.1 --rel_mc_error 0.1 --mc_max_samples 5000 --mc_batch_size 100 --exact_cs_switchpoint 0.6 --confidence_required --power_guarantee --e_method 'lrt' --e_alt 'exact' --alt_type 'twosided' --mask 'pvalues'
+python -u ttesting_CC.py --name 'ttest-rho_neg-df_5' --start_seed $startseed --end_seed $endseed --m 100 --df 5 --tp 10 --tp_first --amp $amp --alpha_fdr 0.05 --rho -0.9 --true_sigma_sq 1.1 --rel_mc_error 0.1 --mc_max_samples 5000 --mc_batch_size 100 --exact_cs_switchpoint 0.6 --confidence_required --power_guarantee --e_method 'lrt' --e_alt 'exact' --mask 'pvalues'
 
 
