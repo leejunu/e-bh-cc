@@ -15,7 +15,7 @@ imports.
 Create the Python3 virtual environment (venv) by running the following
 terminal command:
 ```
-python3 -m venv <venv_ebhcc>
+python3 -m venv venv_ebhcc
 ```
 To activate the venv and install the required dependencies for the z-test
 and t-test scripts, run in the terminal
@@ -31,7 +31,7 @@ experiments (e.g. `ztesting_CC.py` and `ttesting_CC.py`).
 Create the Python3 virtual environment (venv) by running the following
 terminal command:
 ```
-python3 -m venv <venv_kn_mvr>
+python3 -m venv venv_kn_mvr
 ```
 To activate the venv and install the required dependencies for the 
 knockoffs scripts, run in the terminal
@@ -50,7 +50,7 @@ These require a different set of Python dependnecies.)_
 Create the Python3 virtual environment (venv) by running the following
 terminal command:
 ```
-python3 -m venv <venv_numba>
+python3 -m venv venv_numba
 ```
 This is named due to its usage of the `numba` JIT compiler, which makes
 the `numpy` operations required in our implementation of conformal 
