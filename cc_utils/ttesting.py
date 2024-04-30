@@ -37,7 +37,7 @@ class ttesting(abc_setting):
         self.alt = alt
         if (self.alt_type == 'onesided') and (self.method != 'lrt'):
             if alt in ['positive', 'negative']:
-                self.alt = np.ones(self.m) * (1 if alt=='positive' else -1)
+                self.alt = np.ones(self.m) * (1 if alt=='positive' else -1)    # enforces self.alt to be numerical
         
         self.calibrator = calibrator
         self.aon_threshold = aon_threshold
@@ -72,7 +72,13 @@ class ttesting(abc_setting):
         
         if method=='lrt':
             # the likelihood ratio
-            e = scipy.stats.nct.pdf(T, self.df, nc=self.alt) / scipy.stats.t.pdf(T, self.df) 
+            if self.alt_type == 'twosided':
+                magn_alt = np.abs(self.alt)
+                e_neg = scipy.stats.nct.pdf(T, self.df, nc=-1*magn_alt) / scipy.stats.t.pdf(T, self.df) 
+                e_pos = scipy.stats.nct.pdf(T, self.df, nc=magn_alt) / scipy.stats.t.pdf(T, self.df) 
+                e = 0.5 * (e_neg + e_pos)   # average of the positive-alternative and negative-alternative LR
+            else:
+                e = scipy.stats.nct.pdf(T, self.df, nc=self.alt) / scipy.stats.t.pdf(T, self.df) 
         elif method=='p2e_cal':
             # p2e calibration
             e = p2e(self.p_function(T), kappa=self.calibrator)

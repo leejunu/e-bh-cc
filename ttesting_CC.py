@@ -37,6 +37,8 @@ parser.add_argument('--m', type=int, default=100, help='dimension of the Z-distr
 parser.add_argument('--df', type=int, default=20, help='degrees of freedom of corresponding t-distribution.')
 parser.add_argument('--tp', type=int, default=10, help='the number of true non-nulls; must be less than m.')
 parser.add_argument('--tp_first', default=False, action='store_true', help='turn on to make the first tp hypotheses true alternatives.')
+parser.add_argument('--tp_random_sign', default=False, action='store_true', help='turn on to make nonnull means randomly signed.')
+
 
 parser.add_argument('--true_sigma_sq', type=float, default=1.1, help='true sigma squared of the distribution, determines the distribution \
                                                                       of W and the resulting chi-squared.')
@@ -158,7 +160,8 @@ for i, seed in enumerate(seeds):
     
     # set alternative signal strengths
     mu_vec = np.zeros(m)
-    mu_vec[nonzero] = amp 
+    tp_signs = np.random.choice([-1,1],size=len(nonzero)) 
+    mu_vec[nonzero] = amp * tp_signs
 
     # generate t statistics 
     Z =  (cho @ np.random.normal(size=m)) + mu_vec 
