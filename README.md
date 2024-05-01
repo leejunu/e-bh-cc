@@ -38,6 +38,8 @@ knockoffs scripts, run in the terminal
 ```
 source venv_kn_mvr/bin/activate
 pip install -r req_knockoffs.txt
+# need the choldate package for MVR knockoffs
+pip install git+https://github.com/jcrudy/choldate.git@d37246f4fc1775f11b84d42b5ceba08e6392d285  
 ```
 In this virtual environment, you can now run the model-X knockoffs 
 experiments, which use the `mxknockoffs_CC.py` file.
