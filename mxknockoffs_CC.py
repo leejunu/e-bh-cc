@@ -122,7 +122,8 @@ else:
     assert False, f'{args.cov_type} is not a valid covariance matrix construction'
     
 # beta
-nonzero = np.arange(args.tp_freq-1, args.m+1, args.tp_freq).astype(int)    # every tp_freq elements is B: (0, .., 0, B, ...)
+nonzero = np.arange(args.tp_freq-1, args.m, args.tp_freq).astype(int)    # every tp_freq elements is B: (0, .., 0, B, ...)
+print(nonzero)
 signs = np.resize([1, (-1 if args.tp_alt_sign else 1)], len(nonzero))
 beta_vec = np.zeros(m)
 beta_vec[nonzero] = signs * amp / np.sqrt(n)    # populate the beta vector with +/- amp/sqrt n
