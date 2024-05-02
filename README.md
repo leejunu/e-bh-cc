@@ -45,7 +45,7 @@ In this virtual environment, you can now run the model-X knockoffs
 experiments, which use the `mxknockoffs_CC.py` file.
 
 _(Note: we will add instructions on how to use SDP knockoffs at a later point. 
-These require a different set of Python dependnecies.)_
+These require a different set of Python dependencies.)_
 
 ### CC for conformalized outlier detection
 
