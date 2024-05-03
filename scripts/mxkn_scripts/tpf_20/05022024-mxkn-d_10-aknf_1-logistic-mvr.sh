@@ -1,6 +1,6 @@
 #!/bin/bash
 #$ -N mxkn-derand_10-aknf_1.0-logistic-mvr-05022024
-#$ -t 1-200
+#$ -t 1-60
 #$ -o job_output/$JOB_NAME/$JOB_ID-$TASK_ID.log
 #$ -j y
 
@@ -9,14 +9,14 @@ source venv_kn_mvr/bin/activate
 
 # user set this before-hand
 n_exp=100
-n_machines=50
+n_machines=15
 n_seeds_per=$(( ($n_exp + $n_machines - 1) / $n_machines ))    # rounds up n_exp/n_machines
 
 n_amps=4    # 8, 10, 12, 14
 
 # there should be n_amps * n_machines tasks (as qsub -t input), with n_exp seeds per amp
-whichseed=$(( ($SGE_TASK_ID-1) /  $n_amps))   
-whichamp=$(( ($SGE_TASK_ID-1) % $n_amps))    
+whichseed=$(( ($SGE_TASK_ID-1) %  $n_machines))   
+whichamp=$(( ($SGE_TASK_ID-1) / $n_machines))    
 
 # amp=$(bc <<<"scale=3;$whichamp+2") # so that amp starts at 1
 amp=$(( $whichamp * 2 + 8 ))
