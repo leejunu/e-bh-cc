@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-import scipy.stats
+import scipy.stats as ss
 
 import copy
 from collections import *
@@ -112,7 +112,7 @@ def pBY(p, alpha):
         
     '''
     
-    rej = np.nonzero(sp.stats.false_discovery_control(ps=p, method='by') <= alpha)[0]
+    rej = np.nonzero(ss.false_discovery_control(ps=p, method='by') <= alpha)[0]
     return rej
     
 #####
