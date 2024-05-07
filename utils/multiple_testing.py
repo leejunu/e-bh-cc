@@ -84,7 +84,7 @@ def pBH(p, alpha):
         
     '''
     
-    # scipy_rej = np.nonzero(sp.stats.false_discovery_control(ps=p) < alpha)[0]
+    # scipy_rej = np.nonzero(sp.stats.false_discovery_control(ps=p) <= alpha)[0]
     # return scipy_rej
     
     m = len(p)
@@ -98,6 +98,22 @@ def pBH(p, alpha):
         return np.array([])
     else:
         return np.nonzero(np.array(p) <= (alpha*khat/m))[0]
+    
+def pBY(p, alpha):
+    '''
+    Runs the BY procedure to control FDR at given level alpha.
+        
+        Parameters:
+            p : The p-values on which to run the procedure.
+            alpha : The level at which to control FDR.
+            
+        Returns:
+            rej: The rejection set; the selected indices that have rejected nulls.
+        
+    '''
+    
+    rej = np.nonzero(sp.stats.false_discovery_control(ps=p, method='by') <= alpha)[0]
+    return rej
     
 #####
 
