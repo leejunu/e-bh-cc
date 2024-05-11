@@ -1,5 +1,5 @@
 #!/bin/bash
-#$ -N mxkn-derand_10-aknf_1.2-logistic-mvr-05082024
+#$ -N mxkn-derand_10-aknf_0.75-logistic-mvr-05082024
 #$ -t 1-60
 #$ -o job_output/$JOB_NAME/$JOB_ID-$TASK_ID.log
 #$ -j y
@@ -25,4 +25,4 @@ startseed=$(( $whichseed * $n_seeds_per ))
 temp=$(( $startseed + $n_seeds_per )) 
 endseed=$(( ($temp < $n_exp ? $temp : $n_exp) - 1))   # make sure we do exactly n_exp experiments
 
-python -u mxknockoffs_CC.py --name '05082024-mxkn-derand_10-aknf_1.2-logistic-mvr' --start_seed $startseed --end_seed $endseed --m 200 --n 500 --tp_freq 8 --tp_alt_sign --amp $amp  --kmethod 'mvr' --derand 10 --exact_cs_switchpoint 0.6 --mc_max_samples 1000 --mc_batch_size 100 --power_guarantee --confidence_required --rel_mc_error 0.1 --alpha_fdr 0.1 --akn_factor 1.2 --mask 'feature_selection' --model 'logistic'
+python -u mxknockoffs_CC.py --name '05082024-mxkn-derand_10-aknf_0.75-logistic-mvr' --start_seed $startseed --end_seed $endseed --m 200 --n 500 --tp_freq 8 --tp_alt_sign --amp $amp  --kmethod 'mvr' --derand 10 --exact_cs_switchpoint 0.6 --mc_max_samples 1000 --mc_batch_size 100 --power_guarantee --confidence_required --rel_mc_error 0.1 --alpha_fdr 0.1 --akn_factor 0.75 --mask 'feature_selection' --model 'logistic'
