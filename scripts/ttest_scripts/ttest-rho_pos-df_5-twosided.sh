@@ -19,7 +19,7 @@ n_amps=10    # 1, 1.5, ..., 5.5
 whichseed=$(( ($SGE_TASK_ID-1) /  $n_amps))   
 whichamp=$(( ($SGE_TASK_ID-1) % $n_amps))    
 
-amp=$(bc <<<"scale=3;$whichamp/2+1") # so that amp starts at 1
+amp=$(bc <<<"scale=3;$whichamp/2+2") # so that amp starts at 2
 
 startseed=$(( $whichseed * $n_seeds_per ))
 temp=$(( $startseed + $n_seeds_per )) 
