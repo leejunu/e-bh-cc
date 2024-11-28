@@ -235,6 +235,7 @@ class gaussian_mxknockoffs(knockoffs):
         return (X_new, y)
     
 from knockpy.knockoff_stats import data_dependent_threshhold
+
     
 class ghostknockoffs(abc_setting):
     """
@@ -245,7 +246,8 @@ class ghostknockoffs(abc_setting):
         mu,
         Sigma,
         S,
-        groups=None
+        groups=None,
+        feature_statistic='L1'
     ):
         super(ghostknockoffs,self).__init__(f'ghost knockoffs')
         
@@ -256,6 +258,8 @@ class ghostknockoffs(abc_setting):
         self.m = len(mu)
         
         self.groups == groups
+        self.feat_stat == feature_statistic
+        assert self.feat_stat in ['L1', 'chi_squared'], f"feature_statistic must be one of {['L1', 'chi_squared']}"
         
         # ghost knockoff params
         self.Sigma_inv = np.linalg.inv(self.Sigma)
